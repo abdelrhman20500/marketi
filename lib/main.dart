@@ -15,6 +15,7 @@ import 'package:marketi/Features/Auth/presentation/view/verification_code_screen
 import 'package:marketi/Features/Auth/presentation/view_manager/Login_cubit/login_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Register_cubit/register_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Reset_password_code_cubit/reset_password_code_cubit.dart';
+import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home: RegisterScreen()
+      home: LayoutScreen()
       // routes: {
       //  SplashScreen.routeName:(_)=>const SplashScreen(),
       //   OnBoardingScreen.routeName:(_)=>const OnBoardingScreen(),
