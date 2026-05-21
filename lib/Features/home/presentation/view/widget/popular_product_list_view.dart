@@ -9,7 +9,7 @@ class PopularProductListView extends StatelessWidget {
     final h = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: h * 0.31,
+      height: h * 0.37,
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         shrinkWrap: true,

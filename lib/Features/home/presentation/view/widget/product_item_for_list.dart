@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 
-class PopularProductItem extends StatelessWidget {
-  const PopularProductItem({super.key});
+class ProductItemForList extends StatelessWidget {
+  const ProductItemForList({super.key});
 
   final String image ="https://tse3.mm.bing.net/th/id/OIP.ZEXdghINz4HsKZe6BaVuEgHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3";
 

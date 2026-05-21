@@ -15,6 +15,12 @@ import 'package:marketi/Features/Auth/presentation/view/verification_code_screen
 import 'package:marketi/Features/Auth/presentation/view_manager/Login_cubit/login_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Register_cubit/register_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Reset_password_code_cubit/reset_password_code_cubit.dart';
+import 'package:marketi/Features/home/presentation/view/home_screen.dart';
+import 'package:marketi/Features/home/presentation/view/widget/view_all_best_for_you.dart';
+import 'package:marketi/Features/home/presentation/view/widget/view_all_brands.dart';
+import 'package:marketi/Features/home/presentation/view/widget/view_all_buy_again.dart';
+import 'package:marketi/Features/home/presentation/view/widget/view_all_categories.dart';
+import 'package:marketi/Features/home/presentation/view/widget/view_all_popular_product.dart';
 import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
