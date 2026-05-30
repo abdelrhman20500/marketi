@@ -4,10 +4,12 @@ import 'package:shimmer/shimmer.dart';
 
 
 class PopularProductItem extends StatelessWidget {
-  const PopularProductItem({super.key});
+  const PopularProductItem({super.key, required this.imageUrl, required this.title, required this.rating, required this.price});
 
-  final String image ="https://tse3.mm.bing.net/th/id/OIP.ZEXdghINz4HsKZe6BaVuEgHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3";
-
+  final String imageUrl;
+  final String title;
+  final double rating;
+  final double price;
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
@@ -38,7 +40,7 @@ class PopularProductItem extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: CachedNetworkImage(
-                      imageUrl: image,
+                      imageUrl: imageUrl,
                       fit: BoxFit.fill,
                       height: height * 0.2, // Adjust height
                       width: double.infinity, // Full width
@@ -66,18 +68,19 @@ class PopularProductItem extends StatelessWidget {
                 ],
               ),
               SizedBox(height: height*0.01,),
-              const Row(
+               Row(
                 children: [
-                  Text("799 El", style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w600)),
-                  Spacer(),
-                  Icon(Icons.star_border,),
-                  Text("(4.8)", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                  Text("${price.toStringAsFixed(2)} EGP",
+                      style: const TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w600)),
+                  const Spacer(),
+                  const Icon(Icons.star_border,),
+                  Text(rating.toString(), style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
                 ],
               ),
               SizedBox(height:height * 0.01),
-              const Text("Smart watch",
-                style: TextStyle(fontSize: 18,color: Colors.black, fontWeight: FontWeight.w600),
-                maxLines: 2,
+              Text(title,
+                style: const TextStyle(fontSize: 18,color: Colors.black, fontWeight: FontWeight.w600),
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(height:height * 0.01),

@@ -15,12 +15,20 @@ import 'package:marketi/Features/Auth/presentation/view/verification_code_screen
 import 'package:marketi/Features/Auth/presentation/view_manager/Login_cubit/login_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Register_cubit/register_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Reset_password_code_cubit/reset_password_code_cubit.dart';
+import 'package:marketi/Features/home/data/data_source/home_data_source.dart';
+import 'package:marketi/Features/home/data/repo/home_repo_impl.dart';
+import 'package:marketi/Features/home/domain/use_cases/Brands_use_case.dart';
+import 'package:marketi/Features/home/domain/use_cases/category_use_case.dart';
+import 'package:marketi/Features/home/domain/use_cases/product_use_case.dart';
 import 'package:marketi/Features/home/presentation/view/home_screen.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_best_for_you.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_brands.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_buy_again.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_categories.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_popular_product.dart';
+import 'package:marketi/Features/home/presentation/view_manager/brands_cubit/brands_cubit.dart';
+import 'package:marketi/Features/home/presentation/view_manager/category_cubit/category_cubit.dart';
+import 'package:marketi/Features/home/presentation/view_manager/product_cubit/product_cubit.dart';
 import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
@@ -36,6 +44,8 @@ void main() async{
   // )..login("adamsobhi123@gmail.com", "Adam#123");
   // ResetPasswordCodeCubit(ResetPasswordCodeUseCase(AuthRepoImpl(apiConsumer:
   // DioConsumer(dio: Dio()))))..sendResetCode("adamsobhi523@gmail.com");
+  // ProductCubit(ProductUseCase(HomeRepoImpl(homeRemoteDataSource:
+  // HomeRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())))))..productData();
   runApp(const MyApp());
 }
 
