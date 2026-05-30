@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key});
+  const CategoryItem({super.key, required this.image, required this.name});
 
-  final String image ="https://tse3.mm.bing.net/th/id/OIP.ZEXdghINz4HsKZe6BaVuEgHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3";
+  final String image;
+  final String name;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -17,7 +18,7 @@ class CategoryItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: Colors.black.withOpacity(0.15),
                 spreadRadius: 2,
                 blurRadius: 8,
                 offset: const Offset(0, 4),
@@ -58,13 +59,12 @@ class CategoryItem extends StatelessWidget {
           ),
         ),
         // SizedBox(height: height * 0.01),
-        const Expanded(
-          child: Text(
-            "title",
+        Expanded(
+          child: Text(name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w600,
             ),

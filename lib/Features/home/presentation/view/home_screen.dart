@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:marketi/Features/home/presentation/view/widget/best_for_you_list_view.dart';
 import 'package:marketi/Features/home/presentation/view/widget/brand_list_view.dart';
+import 'package:marketi/Features/home/presentation/view/widget/brands_bloc_builder.dart';
 import 'package:marketi/Features/home/presentation/view/widget/build_carousel_slider.dart';
 import 'package:marketi/Features/home/presentation/view/widget/build_home_search.dart';
+import 'package:marketi/Features/home/presentation/view/widget/category_bloc_builder.dart';
 import 'package:marketi/Features/home/presentation/view/widget/category_grid_view.dart';
+import 'package:marketi/Features/home/presentation/view/widget/popular_product_bloc_builder.dart';
 import 'package:marketi/Features/home/presentation/view/widget/popular_product_list_view.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_best_for_you.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_brands.dart';
@@ -52,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 );
               },),
               SizedBox(height: height*0.01,),
-              const PopularProductListView(),
+              const PopularProductBlocBuilder(),
               CustomTitleProduct(text1: "Category", text2: "View all" ,onPressed: (){
                 Navigator.pushAndRemoveUntil(
                   context,
@@ -63,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                 );
               },),
               SizedBox(height: height*0.01,),
-              const CategoryGridView(),
+              const CategoryBlocBuilder(),
               SizedBox(height: height*0.01,),
               CustomTitleProduct(text1: "Best For You", text2: "View all" ,onPressed: (){
                 Navigator.pushAndRemoveUntil(
@@ -86,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                       (route) => false,
                 );
               },),
-              const BrandListView(),
+              const BrandsBlocBuilder(),
               SizedBox(height: height*0.01,),
               CustomTitleProduct(text1: "Buy Again", text2: "View all" ,onPressed: (){
                 Navigator.pushAndRemoveUntil(
