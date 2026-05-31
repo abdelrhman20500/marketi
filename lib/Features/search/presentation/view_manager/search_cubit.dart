@@ -8,8 +8,8 @@ class SearchCubit extends Cubit<SearchState>{
   Future<void> search({required String query})async{
     emit(SearchLoading());
     var result = await searchUseCase.call(query);
-    result.fold((e) {
-      emit(SearchFailure(errMessage: e.message));
+    result.fold((failure) {
+      emit(SearchFailure(error: failure.message));
     }, (searchModel) {
       emit(SearchSuccess(searchModel: searchModel));
     });

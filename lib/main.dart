@@ -31,7 +31,7 @@ import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
 import 'package:marketi/Features/search/data/data_source/search_data_source.dart';
 import 'package:marketi/Features/search/data/repo/search_repo_impl.dart';
 import 'package:marketi/Features/search/domain/use_case/search_use_case.dart';
-import 'package:marketi/Features/search/presentation/view_manager/seach_cubit.dart';
+import 'package:marketi/Features/search/presentation/view_manager/search_cubit.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';

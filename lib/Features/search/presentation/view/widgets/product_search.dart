@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductSearch extends StatelessWidget {
-  const ProductSearch({super.key});
-  final String image ="https://tse3.mm.bing.net/th/id/OIP.ZEXdghINz4HsKZe6BaVuEgHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3";
+  const ProductSearch({super.key, required this.imageUrl, required this.name,
+    required this.quantity, required this.price, required this.rating});
 
+  final String imageUrl;
+  final String name;
+  final int quantity;
+  final double price;
+  final double rating;
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
@@ -17,7 +22,7 @@ class ProductSearch extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF3B82F6).withOpacity(0.04),
+            color: const Color(0xFF3B82F6).withOpacity(0.4),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -39,8 +44,8 @@ class ProductSearch extends StatelessWidget {
             child:  ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
-                imageUrl: image,
-                fit: BoxFit.fill,
+                imageUrl: imageUrl,
+                fit: BoxFit.cover,
                 height: height * 0.2, // Adjust height
                 width: double.infinity, // Full width
                 placeholder: (context, url) => Shimmer.fromColors(
@@ -66,38 +71,22 @@ class ProductSearch extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Expanded(
-                        child: Text(
-                          'Pampers Swaddlers',
+                      Expanded(
+                        child: Text(name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF0F172A),
-                          ),
-                        ),
+                          style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold, color: Color(0xFF0F172A),),),
                       ),
                       IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
-                        icon: const Icon(
-                          Icons.favorite_border,
-                          color: Color(0xFF0F172A),
-                          size: 22,
-                        ),
+                        icon: const Icon(Icons.favorite_border, color: Color(0xFF0F172A),size: 22,),
                         onPressed: () {},
                       ),
                     ],
                   ),
-                  const Text(
-                    '84 Diapers',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF64748B),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  Text(quantity.toString(),
+                    style: const TextStyle(fontSize: 14,color: Color(0xFF64748B), fontWeight: FontWeight.w500,),),
                   const Spacer(),
                   const Row(
                     children: [
@@ -118,31 +107,17 @@ class ProductSearch extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-
-                  // السعر والتقييم وزر الإضافة
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        '345,00 EGP',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF0F172A),
-                        ),
-                      ),
-                      const Row(
+                      Text("${price.toStringAsFixed(2)} EGP",
+                        style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Color(0xFF0F172A),),),
+                      Row(
                         children: [
-                          Icon(Icons.star_border, color: Color(0xFF1E3A8A), size: 16),
-                          SizedBox(width: 2),
-                          Text(
-                            '4.9',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
+                          const Icon(Icons.star_border, color: Color(0xFF1E3A8A), size: 16),
+                          const SizedBox(width: 2),
+                          Text(rating.toString(),
+                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0F172A),),),
                         ],
                       ),
                       SizedBox(
@@ -157,14 +132,8 @@ class ProductSearch extends StatelessWidget {
                             ),
                             padding: EdgeInsets.zero,
                           ),
-                          child: const Text(
-                            'Add',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF3B82F6),
-                            ),
-                          ),
+                          child: const Text('Add',
+                            style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold, color: Color(0xFF3B82F6),),),
                         ),
                       ),
                     ],

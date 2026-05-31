@@ -17,7 +17,7 @@ class SearchRepoImpl extends SearchRepo{
       return right(result);
     } on ServerException catch (e) {
       return Left(
-        ServerFailure(e.errModel.message ?? "Server error"),
+        ServerFailure(e.errModel.message!),
       );
     }
   }
