@@ -5,6 +5,7 @@ class EndPoint {
   static String resetPasswordCode= "auth/resetPassCode";
   static String activeResetPassword= "auth/activeResetPass";
   static String resetPassword= "auth/resetPassword";
+  /// Products...
   static String products ="home/products";
   static String getAllCategory ="home/categories";
   static String brands ="home/brands";
