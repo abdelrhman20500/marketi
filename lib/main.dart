@@ -28,22 +28,23 @@ import 'package:marketi/Features/home/presentation/view_manager/brands_cubit/bra
 import 'package:marketi/Features/home/presentation/view_manager/category_cubit/category_cubit.dart';
 import 'package:marketi/Features/home/presentation/view_manager/product_cubit/product_cubit.dart';
 import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
+import 'package:marketi/Features/search/data/data_source/search_data_source.dart';
+import 'package:marketi/Features/search/data/repo/search_repo_impl.dart';
+import 'package:marketi/Features/search/domain/use_case/search_use_case.dart';
+import 'package:marketi/Features/search/presentation/view_manager/seach_cubit.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';
 import 'Features/onBoarding/presentation/view/on_boarding_screen.dart';
+import 'Features/search/presentation/view/search_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPref.init();
   // setUpServiceLocator();
   Bloc.observer= SimpleBlocObserver();
-  // LoginCubit(LoginUseCase(AuthRepoImpl(apiConsumer: DioConsumer(dio: Dio())))
-  // )..login("adamsobhi123@gmail.com", "Adam#123");
-  // ResetPasswordCodeCubit(ResetPasswordCodeUseCase(AuthRepoImpl(apiConsumer:
-  // DioConsumer(dio: Dio()))))..sendResetCode("adamsobhi523@gmail.com");
-  // ProductCubit(ProductUseCase(HomeRepoImpl(homeRemoteDataSource:
-  // HomeRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())))))..productData();
+  SearchCubit(SearchUseCase(SearchRepoImpl(baseSearchRemoteDataSource: 
+  SearchRemoteDataSource(DioConsumer(dio: Dio())))))..search(query: "l");
   runApp(const MyApp());
 }
 
