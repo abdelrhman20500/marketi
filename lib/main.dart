@@ -22,6 +22,10 @@ import 'package:marketi/Features/home/presentation/view/widget/view_all_buy_agai
 import 'package:marketi/Features/home/presentation/view/widget/view_all_categories.dart';
 import 'package:marketi/Features/home/presentation/view/widget/view_all_popular_product.dart';
 import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
+import 'package:marketi/Features/search/data/data_source/search_data_source.dart';
+import 'package:marketi/Features/search/data/repo/search_repo_impl.dart';
+import 'package:marketi/Features/search/domain/use_case/search_use_case.dart';
+import 'package:marketi/Features/search/presentation/view_manager/seach_cubit.dart';
 import 'package:marketi/Features/splash/presentation/view/splash_screen.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';
@@ -33,10 +37,8 @@ void main() async{
   await SharedPref.init();
   // setUpServiceLocator();
   Bloc.observer= SimpleBlocObserver();
-  // LoginCubit(LoginUseCase(AuthRepoImpl(apiConsumer: DioConsumer(dio: Dio())))
-  // )..login("adamsobhi123@gmail.com", "Adam#123");
-  // ResetPasswordCodeCubit(ResetPasswordCodeUseCase(AuthRepoImpl(apiConsumer:
-  // DioConsumer(dio: Dio()))))..sendResetCode("adamsobhi523@gmail.com");
+  SearchCubit(SearchUseCase(SearchRepoImpl(baseSearchRemoteDataSource: 
+  SearchRemoteDataSource(DioConsumer(dio: Dio())))))..search(query: "l");
   runApp(const MyApp());
 }
 
