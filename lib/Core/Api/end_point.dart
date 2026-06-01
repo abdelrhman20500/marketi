@@ -7,6 +7,7 @@ class EndPoint {
   static String resetPassword= "auth/resetPassword";
   /// Products...
   static String products ="home/products";
+  static String searchProduct ="home/productsFilter";
   static String getAllCategory ="home/categories";
   static String brands ="home/brands";
   static String getUserDataEndPoint(id) {
