@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:marketi/Features/home/presentation/view/widget/product_item_for_list.dart';
+import 'package:marketi/Features/favorite/presentation/view/widget/favorite_item.dart';
 
-class ViewAllGridView extends StatelessWidget {
-  const ViewAllGridView({super.key});
+class FavoriteGridView extends StatelessWidget {
+  const FavoriteGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ViewAllGridView extends StatelessWidget {
         childAspectRatio: 1.3 / 2.0,
       ),
       itemBuilder: (context, index) {
-        return const ProductItemForList();
+        return const FavoriteItem();
       },
     );
   }
