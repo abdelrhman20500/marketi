@@ -11,6 +11,7 @@ import 'package:marketi/Features/Auth/data/repo/auth_repo_impl.dart';
 import 'package:marketi/Features/Auth/domain/use_case/login_use_case.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Login_cubit/login_cubit.dart';
 import 'package:marketi/Features/Auth/presentation/view_manager/Login_cubit/login_state.dart';
+import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
 import '../../../../Core/widget/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -48,6 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
               {
                 closeLoadingDialog(context);
                 showSuccessDialog(context, state.loginModel.message!);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                LayoutScreen()));
               }
         },
         builder: (context, state) {

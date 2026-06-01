@@ -43,8 +43,8 @@ void main() async{
   await SharedPref.init();
   // setUpServiceLocator();
   Bloc.observer= SimpleBlocObserver();
-  SearchCubit(SearchUseCase(SearchRepoImpl(baseSearchRemoteDataSource: 
-  SearchRemoteDataSource(DioConsumer(dio: Dio())))))..search(query: "l");
+  // SearchCubit(SearchUseCase(SearchRepoImpl(baseSearchRemoteDataSource:
+  // SearchRemoteDataSource(DioConsumer(dio: Dio())))))..search(query: "l");
   runApp(const MyApp());
 }
 
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home: LayoutScreen()
+      home: LoginScreen()
       // routes: {
       //  SplashScreen.routeName:(_)=>const SplashScreen(),
       //   OnBoardingScreen.routeName:(_)=>const OnBoardingScreen(),

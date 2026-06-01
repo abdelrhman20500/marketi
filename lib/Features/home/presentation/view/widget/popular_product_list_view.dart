@@ -16,7 +16,7 @@ class PopularProductListView extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: model.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
