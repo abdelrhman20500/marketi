@@ -63,7 +63,7 @@ class  ProductDetailsItem extends StatelessWidget {
                   ),
                   onRatingUpdate: (rating) {},
                 ),
-                Text(model.rating.toString(), style: const TextStyle(color: Colors.blue,fontSize: 18,fontWeight: FontWeight.w600)),
+                Text(  "(${model.rating.toString()})", style: const TextStyle(color: Colors.blue,fontSize: 18,fontWeight: FontWeight.w600)),
               ],
             ),
             SizedBox(height: height * 0.03,),
