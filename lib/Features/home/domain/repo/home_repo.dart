@@ -9,4 +9,6 @@ abstract class HomeRepo{
   Future<Either<Failure, List<ProductModel>>> getProduct();
   Future<Either<Failure, List<CategoryModel>>> getCategory();
   Future<Either<Failure, List<BrandsModel>>> getBrands();
+  Future<Either<Failure,ProductModel>> getProductId({required String id});
+
 }

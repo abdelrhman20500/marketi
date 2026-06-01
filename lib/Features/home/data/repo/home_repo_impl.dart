@@ -47,4 +47,16 @@ class HomeRepoImpl extends HomeRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, ProductModel>> getProductId({required String id})async{
+    try {
+      final result= await homeRemoteDataSource.getProductId(id: id);
+      return right(result);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(e.errModel.message!),
+      );
+    }
+  }
+
 }

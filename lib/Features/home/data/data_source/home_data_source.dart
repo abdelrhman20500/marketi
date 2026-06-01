@@ -10,6 +10,7 @@ abstract class BaseHomeRemoteDataSource{
   Future<List<ProductModel>> getProductDate();
   Future<List<CategoryModel>>getCategoryData();
   Future<List<BrandsModel>>getBrands();
+  Future<ProductModel>getProductId({required String id});
 }
 
 class HomeRemoteDataSource extends BaseHomeRemoteDataSource{
@@ -21,7 +22,6 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource{
     try {
       final response = await apiConsumer.get(EndPoint.getAllCategory);
       final List<dynamic> dataList = response['list'];
-      // print(dataList);
       return dataList.map((e) => CategoryModel.fromJson(e)).toList();
     } catch (e) {
       throw ServerException(errModel: ErrorModel(message: e.toString()));
@@ -33,7 +33,6 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource{
     try {
       final response = await apiConsumer.get(EndPoint.brands);
       final List<dynamic> dataList = response['list'];
-      // print(dataList);
       return dataList.map((e) => BrandsModel.fromJson(e)).toList();
     } catch (e) {
       throw ServerException(errModel: ErrorModel(message: e.toString()));
@@ -45,8 +44,18 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource{
     try {
       final response = await apiConsumer.get(EndPoint.products);
       final List<dynamic> dataList = response['list'];
-      print(dataList);
       return dataList.map((e) => ProductModel.fromJson(e)).toList();
+    } catch (e) {
+      throw ServerException(errModel: ErrorModel(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<ProductModel> getProductId({required String id})async{
+    try {
+      final response = await apiConsumer.get(EndPoint.productId(id));
+      final Map<String, dynamic> productJson = response;
+      return ProductModel.fromJson(productJson);
     } catch (e) {
       throw ServerException(errModel: ErrorModel(message: e.toString()));
     }

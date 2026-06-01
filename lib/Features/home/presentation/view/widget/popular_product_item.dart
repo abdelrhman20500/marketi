@@ -1,21 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:marketi/Features/home/presentation/view/widget/product_details/product_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 
 class PopularProductItem extends StatelessWidget {
-  const PopularProductItem({super.key, required this.imageUrl, required this.title, required this.rating, required this.price});
+  const PopularProductItem({super.key, required this.imageUrl,required this.id,
+    required this.title, required this.rating, required this.price});
 
   final String imageUrl;
   final String title;
   final double rating;
   final double price;
+  final String id;
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
     // var width= MediaQuery.of(context).size.width;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(productId: id),
+          ),
+              (route) => false,
+        );
+      },
       child: Container(
         width: 220,
         decoration: BoxDecoration(

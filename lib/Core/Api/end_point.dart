@@ -10,6 +10,9 @@ class EndPoint {
   static String searchProduct ="home/productsFilter";
   static String getAllCategory ="home/categories";
   static String brands ="home/brands";
+  static String productId(id){
+    return "home/products/$id";
+  }
   static String getUserDataEndPoint(id) {
     return "user/get-user/$id";
   }

@@ -21,6 +21,7 @@ class PopularProductListView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: PopularProductItem(
+              id: model[index].id.toString(),
               title: model[index].title!,
               imageUrl: model[index].thumbnail!,
               price: model[index].price!,
