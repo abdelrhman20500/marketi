@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi/Features/favorite/presentation/%20view_manager/favorite_cubit/favorite_cubit.dart';
+import 'package:marketi/Features/favorite/presentation/%20view_manager/favorite_cubit/favorite_state.dart';
 import 'package:marketi/Features/home/presentation/view/widget/product_details/product_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -69,12 +72,28 @@ class PopularProductItem extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    right: 5.0,
-                    top: 5.0,
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: Colors.white.withOpacity(0.8),
-                      child: const Icon(Icons.favorite, color: Colors.black,),),
+                    right: 8.0,
+                    top: 8.0,
+                    child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                      builder: (context, state) {
+                        final cubit = FavoriteCubit.get(context);
+                        final isFavorite = cubit.favoriteProductIds.contains(id);
+                        return GestureDetector(
+                          onTap: () {
+                            cubit.toggleFavorite(productId: id);
+                          },
+                          child: CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.grey.withOpacity(0.7),
+                            child: Icon(
+                              isFavorite ? Icons.favorite : Icons.favorite_border,
+                              color: isFavorite ? Colors.red : Colors.blue,
+                              size: 22,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

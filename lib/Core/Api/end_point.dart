@@ -13,6 +13,10 @@ class EndPoint {
   static String productId(id){
     return "home/products/$id";
   }
+  static String favorite ="user/getFavorite";
+  static String addFavorite= "user/addFavorite";
+  static String removeFavorite= "user/deleteFavorite";
+
   static String getUserDataEndPoint(id) {
     return "user/get-user/$id";
   }
