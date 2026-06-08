@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi/Features/cart/presentation/view_manager/cart_cubit/cart_cubit.dart';
 import 'package:marketi/Features/favorite/presentation/%20view_manager/favorite_cubit/favorite_cubit.dart';
 import 'package:marketi/Features/favorite/presentation/%20view_manager/favorite_cubit/favorite_state.dart';
 import 'package:marketi/Features/home/presentation/view/widget/product_details/product_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../cart/presentation/view_manager/cart_cubit/cart_state.dart';
 
 
 class PopularProductItem extends StatelessWidget {
@@ -114,28 +117,45 @@ class PopularProductItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(height:height * 0.01),
-              SizedBox(
-                width: double.infinity,
-                height: 38,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    side:
-                    const BorderSide(color: Color(0xFF3B82F6), width: 1.5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  final isLoading = state is AddCartLoading && state.productId == id;
+                  return SizedBox(
+                    width: double.infinity,
+                    height: 38,
+                    child: OutlinedButton(
+                      onPressed: isLoading
+                          ? null
+                          : () {
+                        context.read<CartCubit>().addCart(productId: id);
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Color(0xFF3B82F6), width: 1.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: isLoading
+                          ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Color(0xFF3B82F6),
+                        ),
+                      )
+                          : const Text(
+                        'Add',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF3B82F6),
+                        ),
+                      ),
                     ),
-                    padding: EdgeInsets.zero,
-                  ),
-                  child: const Text(
-                    'Add',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF3B82F6),
-                    ),
-                  ),
-                ),
+                  );
+                },
               ),
             ],
           ),
