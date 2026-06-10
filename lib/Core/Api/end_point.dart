@@ -13,17 +13,5 @@ class EndPoint {
   static String productId(id){
     return "home/products/$id";
   }
-  /// favorite .....
-  static String favorite ="user/getFavorite";
-  static String addFavorite= "user/addFavorite";
-  static String removeFavorite= "user/deleteFavorite";
-
-  /// cart ......
-  static String removeCart ="user/deleteCart";
-  static String addCart ="user/addCart";
-  static String cart ="user/getCart";
-
-  static String getUserDataEndPoint(id) {
-    return "user/get-user/$id";
-  }
+  static String getUserData = "portfoilo/userData";
 }
