@@ -9,6 +9,8 @@ import 'package:marketi/Features/menu/domain/use_case/user_use_case.dart';
 import 'package:marketi/Features/menu/presentation/view_manager/user_cubit.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';
+import 'Features/cart/presentation/view_manager/cart_cubit/cart_cubit.dart';
+import 'Features/splash/presentation/view/splash_screen.dart';
 
 
 void main() async{
@@ -25,18 +27,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-      home: LayoutScreen()
-      // routes: {
-      //  SplashScreen.routeName:(_)=>const SplashScreen(),
-      //   OnBoardingScreen.routeName:(_)=>const OnBoardingScreen(),
-      //   LoginScreen.routeName:(_)=>const LoginScreen(),
-      //   RegisterScreen.routeName:(_)=>const RegisterScreen(),
-      //   ForgetPasswordScreen.routeName:(_)=>ForgetPasswordScreen(),
-      //   VerificationCodeScreen.routeName:(_)=> VerificationCodeScreen(),
-      // },
-      // initialRoute: VerificationCodeScreen.routeName,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) =>  FavoriteCubit(
+         AddToFavoriteUseCase(FavoriteRepoImpl(
+           favoriteBaseRemoteDataSource: AddToFavoriteRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())),
+         )),
+         RemoveFavoriteUseCase(FavoriteRepoImpl(
+           favoriteBaseRemoteDataSource: AddToFavoriteRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())),
+         )),
+         FavoriteUseCase(FavoriteRepoImpl(
+           favoriteBaseRemoteDataSource: AddToFavoriteRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())),
+         )),
+       )..getFavorite(),),
+        BlocProvider(create: (context) => CartCubit(
+        AddCartUseCase(CartRepoImpl(cartBaseRemoteDataSource: CartRemoteDataSource(apiConsumer:
+        DioConsumer(dio: Dio())))),
+        RemoveCartUseCase(CartRepoImpl(cartBaseRemoteDataSource: CartRemoteDataSource(apiConsumer:
+        DioConsumer(dio: Dio())))),
+        CartUseCase(CartRepoImpl(cartBaseRemoteDataSource: CartRemoteDataSource(apiConsumer:
+        DioConsumer(dio: Dio())))))..getCart(),),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SharedPref.getToken() == null ? const SplashScreen() : LayoutScreen(),
+      ),
     );
   }
 }

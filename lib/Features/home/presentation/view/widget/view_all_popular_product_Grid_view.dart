@@ -6,7 +6,6 @@ class ViewAllGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // استخدمنا SliverGrid بدلاً من GridView العادي ليتكامل مع الـ Scroll العام للشاشة
     return SliverGrid.builder(
       itemCount: 12,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

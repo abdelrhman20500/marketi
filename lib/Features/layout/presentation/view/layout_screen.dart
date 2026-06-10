@@ -15,7 +15,7 @@ class LayoutScreen extends StatelessWidget {
     const HomeScreen(),
     const CartScreen(),
     const FavoriteScreen(),
-    MenuScreen(),
+    const MenuScreen(),
   ];
 
   @override
