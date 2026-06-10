@@ -13,7 +13,5 @@ class EndPoint {
   static String productId(id){
     return "home/products/$id";
   }
-  static String getUserDataEndPoint(id) {
-    return "user/get-user/$id";
-  }
+  static String getUserData = "portfoilo/userData";
 }
