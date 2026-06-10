@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/Features/menu/presentation/view/widget/build_list-title.dart';
+
+import '../view_manager/user_cubit.dart';
+import '../view_manager/user_state.dart';
 
 class MenuScreen extends StatefulWidget {
    const MenuScreen({super.key});
@@ -84,10 +88,40 @@ class _MenuScreenState extends State<MenuScreen> {
               ],
             ),
             SizedBox(height: height*0.01,),
-            const Text('Yousef Ragab',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF0F172A), letterSpacing: 0.5,),),
-            SizedBox(height: height*0.01,),
-            const Text('@Nba1Usef', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF94A3B8),),),
+            // ✅ اسم وإيميل من Cubit مباشرة
+            BlocBuilder<UserCubit, UserState>(
+              builder: (context, state) {
+                if (state is UserSuccess) {
+                  return Column(
+                    children: [
+                      Text(
+                        state.userModel.message!.name ?? "No Name",
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF0F172A),
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      Text(
+                        state.userModel.message!.email ?? "No Email",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF94A3B8),
+                        ),
+                      ),
+                    ],
+                  );
+                } else if (state is UserFailure) {
+                  print(state.error);
+                  return Text(state.error, style: const TextStyle(color: Colors.red));
+                }
+                // لو لسه مفيش بيانات، اعرض فراغ
+                return const SizedBox.shrink();
+              },
+            ),
             SizedBox(height: height*0.02,),
             BuildListTitle(icon: Icons.person_outline, title: "Account Preferences", onTap: (){}),
             SizedBox(height: height*0.01,),

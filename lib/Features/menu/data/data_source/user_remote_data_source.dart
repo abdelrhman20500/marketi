@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:marketi/Core/Api/api_consumer.dart';
 import 'package:marketi/Core/Api/end_point.dart';
 import 'package:marketi/Features/menu/data/model/user_model.dart';
@@ -15,9 +14,7 @@ class UserRemoteDataSource extends UserBaseRemoteDataSource{
   Future<UserModel> userData()async{
    try {
      var response = await apiConsumer.get(EndPoint.getUserData);
-     Map<String, dynamic> jsonDate = jsonDecode(response.body);
-     print(jsonDate);
-     UserModel userModel = UserModel.fromJson(jsonDate);
+     UserModel userModel = UserModel.fromJson(response);
      return userModel;
    } catch (e) {
      throw ServerException(errModel: ErrorModel(message: e.toString()));

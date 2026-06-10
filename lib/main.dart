@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/Core/Api/dio_consumer.dart';
 import 'package:marketi/Features/layout/presentation/view/layout_screen.dart';
+import 'package:marketi/Features/menu/data/data_source/user_remote_data_source.dart';
+import 'package:marketi/Features/menu/data/repo/user_repo_impl.dart';
+import 'package:marketi/Features/menu/domain/use_case/user_use_case.dart';
+import 'package:marketi/Features/menu/presentation/view_manager/user_cubit.dart';
 import 'Core/Api/simple_bloc_observer.dart';
 import 'Core/cached/shared_pref.dart';
 import 'Features/cart/data/data_source/cart_remote_data_source.dart';
@@ -36,6 +40,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create:(context) => UserCubit(UserUseCase(UserRepoImpl(userBaseRemoteDataSource:
+          UserRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())))))..getUserData() ,
+        ),
         BlocProvider(create: (context) =>  FavoriteCubit(
          AddToFavoriteUseCase(FavoriteRepoImpl(
            favoriteBaseRemoteDataSource: AddToFavoriteRemoteDataSource(apiConsumer: DioConsumer(dio: Dio())),
